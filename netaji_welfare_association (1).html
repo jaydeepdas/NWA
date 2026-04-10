@@ -1,0 +1,2418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Netaji Welfare Association – Rise and Roar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b3e;
+    --navy-dark: #080f24;
+    --navy-mid: #152348;
+    --gold: #d4a017;
+    --gold-light: #f0c040;
+    --gold-bright: #ffd700;
+    --red: #c0392b;
+    --red-light: #e74c3c;
+    --white: #ffffff;
+    --off-white: #f5f0e8;
+    --text-muted: #a0a8c0;
+    --border: rgba(212,160,23,0.25);
+    --card-bg: rgba(13,27,62,0.85);
+    --success: #27ae60;
+    --font-display: 'Cinzel', serif;
+    --font-body: 'Nunito', sans-serif;
+    --shadow-gold: 0 4px 24px rgba(212,160,23,0.3);
+    --shadow-deep: 0 8px 40px rgba(0,0,0,0.5);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--navy-dark);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── PAGES ── */
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(8,15,36,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px; cursor: pointer;
+  }
+
+  .nav-logo img {
+    height: 48px; width: 48px; border-radius: 50%;
+    border: 2px solid var(--gold);
+    object-fit: cover;
+  }
+
+  .nav-logo-placeholder {
+    height: 48px; width: 48px; border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: var(--navy-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 18px; color: var(--gold); font-weight: 700;
+  }
+
+  .nav-brand { font-family: var(--font-display); font-size: 13px; color: var(--gold); line-height: 1.3; }
+  .nav-brand span { display: block; font-size: 9px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+
+  .nav-links { display: flex; gap: 8px; align-items: center; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none;
+    font-size: 13px; font-weight: 600; padding: 6px 14px;
+    border-radius: 20px; transition: all 0.3s;
+    letter-spacing: 0.5px;
+  }
+  .nav-links a:hover, .nav-links a.active-link {
+    color: var(--gold); background: rgba(212,160,23,0.1);
+  }
+
+  .nav-admin-btn {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy-dark) !important;
+    font-weight: 700 !important;
+    padding: 7px 16px !important;
+    border-radius: 20px !important;
+  }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--gold); border-radius: 2px; transition: all 0.3s; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #060c1e 0%, #0d1b3e 50%, #1a0a0a 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    position: relative; overflow: hidden;
+    padding: 80px 5% 40px;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(212,160,23,0.08) 0%, transparent 70%);
+  }
+
+  .hero-particles { position: absolute; inset: 0; overflow: hidden; }
+  .hero-particles::before, .hero-particles::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+  }
+  .hero-particles::before {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(212,160,23,0.05) 0%, transparent 70%);
+    top: 20%; left: 10%;
+  }
+  .hero-particles::after {
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(192,57,43,0.06) 0%, transparent 70%);
+    bottom: 20%; right: 10%;
+    animation-delay: -3s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+  .hero-logo-wrap {
+    width: 130px; height: 130px; margin: 0 auto 28px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 40px rgba(212,160,23,0.4), inset 0 0 40px rgba(212,160,23,0.05);
+    overflow: hidden; background: var(--navy-mid);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .hero-logo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+  .hero-logo-fallback {
+    font-family: var(--font-display); font-size: 42px; color: var(--gold); font-weight: 900;
+  }
+
+  .hero-tagline-small {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+    font-family: var(--font-display);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 68px);
+    font-weight: 900; line-height: 1.1;
+    color: var(--white);
+    text-shadow: 0 0 60px rgba(212,160,23,0.3);
+    margin-bottom: 12px;
+  }
+
+  .hero-title span { color: var(--gold); }
+
+  .hero-subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 3vw, 28px);
+    color: var(--gold-light);
+    letter-spacing: 6px; text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .hero-desc {
+    font-size: 16px; color: var(--text-muted); line-height: 1.7;
+    max-width: 560px; margin: 0 auto 40px;
+  }
+
+  .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px; border-radius: 50px; font-size: 14px;
+    font-weight: 700; cursor: pointer; border: none; text-decoration: none;
+    transition: all 0.3s; font-family: var(--font-body); letter-spacing: 0.5px;
+  }
+
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy-dark);
+    box-shadow: var(--shadow-gold);
+  }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,160,23,0.5); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--gold); border: 2px solid var(--gold);
+  }
+  .btn-outline:hover { background: rgba(212,160,23,0.1); transform: translateY(-2px); }
+
+  .btn-red {
+    background: linear-gradient(135deg, var(--red), var(--red-light));
+    color: var(--white);
+    box-shadow: 0 4px 20px rgba(192,57,43,0.35);
+  }
+  .btn-red:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(192,57,43,0.5); }
+
+  /* ── SECTION COMMON ── */
+  .section { padding: 80px 5%; }
+  .section-dark { background: var(--navy-dark); }
+  .section-mid { background: var(--navy-mid); }
+
+  .section-header { text-align: center; margin-bottom: 56px; }
+  .section-eyebrow {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px; font-family: var(--font-display);
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 44px); font-weight: 700;
+    color: var(--white); margin-bottom: 16px;
+  }
+  .section-title span { color: var(--gold); }
+  .section-line {
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--red));
+    margin: 0 auto; border-radius: 2px;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    max-width: 1100px; margin: 0 auto; align-items: center;
+  }
+
+  .about-text p { font-size: 15px; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+  .about-text p strong { color: var(--gold-light); }
+
+  .about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .pillar {
+    background: rgba(212,160,23,0.06); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px; text-align: center;
+  }
+  .pillar-icon { font-size: 28px; margin-bottom: 8px; }
+  .pillar-label { font-size: 13px; font-weight: 700; color: var(--gold-light); font-family: var(--font-display); }
+
+  .about-logo-side {
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .about-logo-ring {
+    width: 280px; height: 280px; border-radius: 50%;
+    border: 2px solid var(--border);
+    box-shadow: 0 0 60px rgba(212,160,23,0.15);
+    overflow: hidden; background: var(--navy-mid);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .about-logo-ring img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ── NAV CARDS ── */
+  .nav-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+  .nav-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px 20px; text-align: center;
+    cursor: pointer; transition: all 0.3s;
+    backdrop-filter: blur(8px);
+  }
+  .nav-card:hover {
+    border-color: var(--gold); transform: translateY(-6px);
+    box-shadow: var(--shadow-gold);
+    background: rgba(212,160,23,0.08);
+  }
+  .nav-card-icon { font-size: 40px; margin-bottom: 16px; }
+  .nav-card-title {
+    font-family: var(--font-display); font-size: 14px; font-weight: 700;
+    color: var(--gold); margin-bottom: 8px; letter-spacing: 1px;
+  }
+  .nav-card-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── GALLERY HOME ── */
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; max-width: 1100px; margin: 0 auto; }
+  .gallery-item {
+    aspect-ratio: 4/3; border-radius: 10px; overflow: hidden;
+    background: var(--navy-mid); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.3s;
+    position: relative;
+  }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery-item:hover { transform: scale(1.02); box-shadow: var(--shadow-gold); }
+  .gallery-item .gallery-placeholder { font-size: 40px; color: var(--text-muted); }
+  .gallery-item .gallery-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 8px 12px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    font-size: 12px; color: var(--white); opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gallery-item:hover .gallery-label { opacity: 1; }
+
+  /* ── MARATHON PAGE ── */
+  .marathon-hero {
+    background: linear-gradient(135deg, var(--navy-dark), var(--navy-mid));
+    padding: 100px 5% 60px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .event-card {
+    max-width: 700px; margin: 0 auto;
+    background: rgba(212,160,23,0.05);
+    border: 2px solid var(--gold);
+    border-radius: 24px; padding: 48px;
+    box-shadow: var(--shadow-gold);
+  }
+
+  .event-badge {
+    display: inline-block; background: var(--success); color: white;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; padding: 4px 16px; border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .event-badge.closed { background: var(--red); }
+
+  .event-name {
+    font-family: var(--font-display); font-size: clamp(24px, 4vw, 36px);
+    color: var(--gold); font-weight: 700; margin-bottom: 16px;
+  }
+
+  .event-meta { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin: 24px 0; }
+  .event-meta-item { text-align: center; }
+  .event-meta-item .label { font-size: 11px; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; }
+  .event-meta-item .value { font-size: 18px; font-weight: 700; color: var(--white); font-family: var(--font-display); }
+
+  .event-desc { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 32px; }
+
+  .no-event {
+    max-width: 500px; margin: 60px auto;
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 20px; padding: 48px; text-align: center;
+  }
+
+  .no-event .icon { font-size: 48px; margin-bottom: 16px; }
+  .no-event h3 { font-family: var(--font-display); font-size: 20px; color: var(--text-muted); }
+
+  /* ── FORM ── */
+  .form-page { padding: 100px 5% 60px; }
+  .form-wrap { max-width: 700px; margin: 0 auto; }
+  .form-title { font-family: var(--font-display); font-size: 32px; color: var(--gold); margin-bottom: 8px; }
+  .form-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 40px; }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-full { grid-column: 1 / -1; }
+
+  .form-group label {
+    display: block; font-size: 12px; font-weight: 700;
+    color: var(--gold-light); letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--white);
+    font-size: 14px;
+    font-family: var(--font-body);
+    transition: border-color 0.3s;
+    outline: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold); background: rgba(212,160,23,0.05);
+  }
+
+  .form-group select option { background: var(--navy-dark); }
+
+  .form-group.has-error input,
+  .form-group.has-error select { border-color: var(--red-light); }
+
+  .form-error { color: var(--red-light); font-size: 11px; margin-top: 4px; }
+
+  /* ── PAYMENT ── */
+  .payment-page { padding: 100px 5% 60px; }
+  .payment-wrap { max-width: 560px; margin: 0 auto; text-align: center; }
+
+  .payment-amount {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy-dark);
+    border-radius: 16px; padding: 24px; margin-bottom: 32px;
+    font-family: var(--font-display);
+  }
+
+  .payment-amount .amount-label { font-size: 12px; letter-spacing: 2px; margin-bottom: 8px; }
+  .payment-amount .amount-value { font-size: 48px; font-weight: 900; line-height: 1; }
+  .payment-amount .amount-event { font-size: 13px; opacity: 0.8; margin-top: 4px; }
+
+  .payment-instructions {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px; margin-bottom: 28px; text-align: left;
+  }
+
+  .payment-instructions h4 {
+    font-family: var(--font-display); color: var(--gold);
+    font-size: 16px; margin-bottom: 16px; text-align: center;
+  }
+
+  .upi-detail {
+    background: rgba(212,160,23,0.08); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px; margin-bottom: 12px;
+    font-size: 14px; color: var(--white);
+  }
+
+  .upi-detail .upi-label { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 4px; }
+  .upi-detail .upi-value { font-size: 18px; font-weight: 700; color: var(--gold-light); letter-spacing: 1px; }
+  .upi-detail small { font-size: 11px; color: var(--text-muted); }
+
+  .copy-btn {
+    background: var(--border); border: none; color: var(--gold);
+    padding: 4px 12px; border-radius: 20px; font-size: 11px;
+    cursor: pointer; margin-left: 8px; transition: all 0.2s;
+  }
+  .copy-btn:hover { background: var(--gold); color: var(--navy-dark); }
+
+  /* ── SUCCESS PAGE ── */
+  .success-page { padding: 100px 5% 60px; }
+  .success-wrap { max-width: 560px; margin: 0 auto; text-align: center; }
+
+  .success-icon {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--success), #2ecc71);
+    margin: 0 auto 24px; display: flex; align-items: center; justify-content: center;
+    font-size: 36px; box-shadow: 0 8px 32px rgba(39,174,96,0.4);
+  }
+
+  .success-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px; margin: 24px 0;
+    text-align: left;
+  }
+
+  .success-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 14px;
+  }
+
+  .success-row:last-child { border-bottom: none; }
+  .success-row .s-label { color: var(--text-muted); }
+  .success-row .s-value { font-weight: 700; color: var(--gold-light); }
+
+  /* ── MEMBERS ── */
+  .members-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
+
+  .member-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden; text-align: center;
+    transition: all 0.3s;
+  }
+
+  .member-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: var(--shadow-gold); }
+
+  .member-photo {
+    width: 100%; aspect-ratio: 1; overflow: hidden;
+    background: var(--navy-mid);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .member-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .member-photo .member-initial {
+    font-family: var(--font-display); font-size: 48px;
+    color: var(--gold); font-weight: 700;
+  }
+
+  .member-info { padding: 20px; }
+  .member-name { font-family: var(--font-display); font-size: 15px; color: var(--white); font-weight: 700; margin-bottom: 4px; }
+  .member-role { font-size: 12px; color: var(--gold); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+  .member-bio { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── ANNOUNCEMENTS ── */
+  .announcements-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+
+  .announcement-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden; display: flex;
+    transition: all 0.3s;
+  }
+
+  .announcement-card:hover { border-color: var(--gold); box-shadow: var(--shadow-gold); }
+
+  .announcement-img {
+    width: 140px; flex-shrink: 0;
+    background: var(--navy-mid);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  .announcement-img img { width: 100%; height: 100%; object-fit: cover; }
+  .announcement-img .ann-icon { font-size: 36px; }
+
+  .announcement-content { padding: 20px; flex: 1; }
+  .announcement-date { font-size: 11px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+  .announcement-title { font-family: var(--font-display); font-size: 18px; color: var(--white); font-weight: 700; margin-bottom: 8px; }
+  .announcement-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-dark);
+    border-top: 1px solid var(--border);
+    padding: 48px 5% 24px;
+  }
+
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; max-width: 1100px; margin: 0 auto 40px; }
+
+  .footer-brand .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .footer-brand .footer-logo img { height: 48px; border-radius: 50%; border: 2px solid var(--gold); }
+  .footer-brand .logo-placeholder { height: 48px; width: 48px; border-radius: 50%; border: 2px solid var(--gold); background: var(--navy-mid); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 18px; color: var(--gold); }
+  .footer-brand h3 { font-family: var(--font-display); color: var(--gold); font-size: 16px; }
+  .footer-brand p { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+  .footer-desc { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+
+  .social-links { display: flex; gap: 12px; }
+  .social-link {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted); font-size: 15px; text-decoration: none;
+    transition: all 0.3s;
+  }
+  .social-link:hover { border-color: var(--gold); color: var(--gold); background: rgba(212,160,23,0.1); }
+
+  .footer-links h4 { font-family: var(--font-display); font-size: 13px; color: var(--gold); margin-bottom: 16px; letter-spacing: 1px; }
+  .footer-links ul { list-style: none; }
+  .footer-links li { margin-bottom: 10px; }
+  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1100px; margin: 0 auto;
+    font-size: 12px; color: var(--text-muted);
+  }
+
+  /* ── ADMIN PANEL ── */
+  #adminLoginPage {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #060c1e, #0d1b3e);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .admin-login-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 24px; padding: 48px; width: 400px; max-width: 90%;
+    text-align: center; backdrop-filter: blur(8px);
+  }
+
+  .admin-login-icon { font-size: 40px; margin-bottom: 20px; }
+  .admin-login-card h2 { font-family: var(--font-display); font-size: 24px; color: var(--gold); margin-bottom: 8px; }
+  .admin-login-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
+  .login-error { color: var(--red-light); font-size: 13px; margin-top: 12px; }
+
+  #adminPanelPage { padding-top: 0; }
+
+  .admin-nav {
+    background: var(--navy-dark);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex; align-items: center; gap: 0;
+    height: 60px; position: sticky; top: 0; z-index: 100;
+  }
+
+  .admin-nav-brand { font-family: var(--font-display); font-size: 14px; color: var(--gold); margin-right: 24px; white-space: nowrap; }
+
+  .admin-tab {
+    padding: 0 16px; height: 60px; display: flex; align-items: center;
+    font-size: 12px; font-weight: 600; color: var(--text-muted);
+    cursor: pointer; border-bottom: 2px solid transparent;
+    transition: all 0.3s; letter-spacing: 0.5px; white-space: nowrap;
+  }
+
+  .admin-tab:hover { color: var(--gold-light); }
+  .admin-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  .admin-logout {
+    margin-left: auto; background: rgba(192,57,43,0.15); border: 1px solid var(--red);
+    color: var(--red-light); padding: 6px 14px; border-radius: 20px;
+    font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap;
+  }
+
+  .admin-content { padding: 32px; max-width: 1200px; margin: 0 auto; }
+  .admin-section { display: none; }
+  .admin-section.active { display: block; }
+
+  .admin-section-title {
+    font-family: var(--font-display); font-size: 22px; color: var(--gold);
+    margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+
+  .admin-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px; margin-bottom: 20px;
+  }
+
+  .admin-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .admin-form-full { grid-column: 1 / -1; }
+
+  .admin-form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+
+  .admin-form-group input,
+  .admin-form-group select,
+  .admin-form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 14px;
+    color: var(--white); font-size: 13px;
+    font-family: var(--font-body); outline: none; transition: border-color 0.3s;
+  }
+
+  .admin-form-group input:focus,
+  .admin-form-group select:focus,
+  .admin-form-group textarea:focus { border-color: var(--gold); }
+  .admin-form-group select option { background: var(--navy-dark); }
+
+  .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .admin-table th {
+    background: rgba(212,160,23,0.1);
+    color: var(--gold); font-size: 11px; letter-spacing: 1px;
+    text-transform: uppercase; padding: 12px 16px; text-align: left;
+  }
+  .admin-table td {
+    padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text-muted);
+  }
+  .admin-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .tag-green { background: rgba(39,174,96,0.2); color: #2ecc71; }
+  .tag-red { background: rgba(192,57,43,0.2); color: var(--red-light); }
+  .tag-gold { background: rgba(212,160,23,0.2); color: var(--gold); }
+  .tag-gray { background: rgba(160,168,192,0.15); color: var(--text-muted); }
+
+  .action-btns { display: flex; gap: 8px; }
+  .action-btn {
+    padding: 5px 12px; border-radius: 6px; font-size: 11px; font-weight: 700;
+    cursor: pointer; border: none; transition: all 0.2s;
+  }
+  .action-btn-edit { background: rgba(212,160,23,0.15); color: var(--gold); }
+  .action-btn-edit:hover { background: var(--gold); color: var(--navy-dark); }
+  .action-btn-delete { background: rgba(192,57,43,0.15); color: var(--red-light); }
+  .action-btn-delete:hover { background: var(--red); color: var(--white); }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+  .stat-card .stat-num { font-family: var(--font-display); font-size: 32px; font-weight: 900; color: var(--gold); }
+  .stat-card .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 4px; letter-spacing: 1px; text-transform: uppercase; }
+
+  .export-btn {
+    background: rgba(39,174,96,0.15); border: 1px solid var(--success);
+    color: #2ecc71; padding: 8px 16px; border-radius: 8px;
+    font-size: 12px; font-weight: 700; cursor: pointer; margin-bottom: 16px;
+    transition: all 0.2s;
+  }
+  .export-btn:hover { background: var(--success); color: white; }
+
+  .img-preview {
+    width: 80px; height: 80px; border-radius: 8px; object-fit: cover;
+    border: 1px solid var(--border); background: var(--navy-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; color: var(--text-muted); overflow: hidden;
+  }
+
+  .img-preview img { width: 100%; height: 100%; object-fit: cover; }
+
+  .modal {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,0.7); align-items: center; justify-content: center;
+  }
+  .modal.open { display: flex; }
+
+  .modal-content {
+    background: var(--navy-mid); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px; width: 560px; max-width: 95%;
+    max-height: 90vh; overflow-y: auto;
+  }
+
+  .modal-title { font-family: var(--font-display); font-size: 20px; color: var(--gold); margin-bottom: 24px; }
+  .modal-close { float: right; cursor: pointer; color: var(--text-muted); font-size: 20px; background: none; border: none; }
+
+  .gallery-admin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+  .gallery-admin-item { position: relative; aspect-ratio: 4/3; border-radius: 8px; overflow: hidden; background: var(--navy-dark); border: 1px solid var(--border); }
+  .gallery-admin-item img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery-admin-item .gai-del {
+    position: absolute; top: 4px; right: 4px;
+    background: rgba(192,57,43,0.85); color: white; border: none;
+    border-radius: 50%; width: 22px; height: 22px; cursor: pointer;
+    font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+  .gallery-admin-placeholder { display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--text-muted); width: 100%; height: 100%; }
+
+  /* ── ALERTS ── */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    background: var(--success); color: white;
+    padding: 14px 20px; border-radius: 12px;
+    font-size: 14px; font-weight: 600;
+    transform: translateY(100px); opacity: 0;
+    transition: all 0.4s; box-shadow: var(--shadow-deep);
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast.error { background: var(--red); }
+
+  /* ── MOBILE ── */
+  .mobile-menu {
+    display: none; flex-direction: column;
+    position: fixed; top: 70px; left: 0; right: 0;
+    background: rgba(8,15,36,0.98);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 5%;
+    z-index: 999;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--text-muted); text-decoration: none; padding: 12px 0;
+    font-size: 14px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: color 0.3s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+
+  .search-filter { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .search-filter input {
+    flex: 1; min-width: 200px;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 14px; color: white; font-size: 13px; outline: none;
+  }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-logo-side { order: -1; }
+    .about-logo-ring { width: 200px; height: 200px; }
+    .nav-cards { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .admin-form-grid { grid-template-columns: 1fr; }
+    .announcement-card { flex-direction: column; }
+    .announcement-img { width: 100%; height: 140px; }
+    .admin-nav { overflow-x: auto; }
+    .modal-content { padding: 20px; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-cards { grid-template-columns: 1fr; }
+    .members-grid { grid-template-columns: 1fr 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-full { grid-column: 1; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .event-card { padding: 28px 20px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 3000;
+    background: rgba(0,0,0,0.9); align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+  NAV
+═══════════════════════════════════════════════════ -->
+<nav id="mainNav">
+  <div class="nav-logo" onclick="showPage('home')">
+    <div class="nav-logo-placeholder" id="navLogoWrap">N</div>
+    <div class="nav-brand">Netaji Welfare Association <span>Rise and Roar · Est. 2024</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="#" onclick="showPage('home')" class="active-link" id="navHome">Home</a>
+    <a href="#" onclick="showPage('marathon')" id="navMarathon">Marathon</a>
+    <a href="#" onclick="showPage('members')" id="navMembers">Members</a>
+    <a href="#" onclick="showPage('announcements')" id="navAnnouncements">Announcements</a>
+    <a href="#" onclick="showPage('gallery')" id="navGallery">Gallery</a>
+    <a href="#" onclick="showPage('adminLogin')" class="nav-admin-btn">Admin</a>
+  </div>
+  <div class="hamburger" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="showPage('home'); toggleMobileMenu()">🏠 Home</a>
+  <a href="#" onclick="showPage('marathon'); toggleMobileMenu()">🏃 Marathon</a>
+  <a href="#" onclick="showPage('members'); toggleMobileMenu()">👥 Members</a>
+  <a href="#" onclick="showPage('announcements'); toggleMobileMenu()">📢 Announcements</a>
+  <a href="#" onclick="showPage('gallery'); toggleMobileMenu()">🖼️ Gallery</a>
+  <a href="#" onclick="showPage('adminLogin'); toggleMobileMenu()">🔐 Admin</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  HOME PAGE
+═══════════════════════════════════════════════════ -->
+<div class="page active" id="homePage">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-particles"></div>
+    <div class="hero-content">
+      <div class="hero-logo-wrap">
+        <div class="hero-logo-fallback" id="heroLogoImg">N</div>
+      </div>
+      <div class="hero-tagline-small">📍 Malda, West Bengal · Est. 2024</div>
+      <h1 class="hero-title">Netaji <span>Welfare</span><br>Association</h1>
+      <div class="hero-subtitle">Rise and Roar</div>
+      <p class="hero-desc">A community-driven non-profit organization empowering youth, promoting health & fitness, and uniting our community through action.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-gold" onclick="showPage('marathon')">🏃 Join Marathon</button>
+        <button class="btn btn-outline" onclick="document.getElementById('aboutSection').scrollIntoView({behavior:'smooth'})">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section section-mid" id="aboutSection">
+    <div class="section-header">
+      <div class="section-eyebrow">Our Story</div>
+      <h2 class="section-title">Who We <span>Are</span></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Founded in <strong>2024</strong>, Netaji Welfare Association is a passionate community organization rooted in the spirit of unity, empowerment, and wellness. We believe that a strong community is built on the pillars of health, youth engagement, and collective action.</p>
+        <p>Our flagship annual <strong>Marathon Event</strong> brings together participants from across the region to celebrate fitness, determination, and community spirit. We are committed to organizing impactful social events that leave a lasting positive mark.</p>
+        <p>Under the tagline <strong>"Rise and Roar"</strong>, we inspire every individual to push their limits and contribute to a stronger, healthier society.</p>
+        <div class="about-pillars">
+          <div class="pillar"><div class="pillar-icon">💪</div><div class="pillar-label">Health & Fitness</div></div>
+          <div class="pillar"><div class="pillar-icon">🌟</div><div class="pillar-label">Youth Empowerment</div></div>
+          <div class="pillar"><div class="pillar-icon">🤝</div><div class="pillar-label">Community Unity</div></div>
+          <div class="pillar"><div class="pillar-icon">🏃</div><div class="pillar-label">Annual Marathon</div></div>
+        </div>
+      </div>
+      <div class="about-logo-side">
+        <div class="about-logo-ring" id="aboutLogoWrap">
+          <div style="font-family:var(--font-display);font-size:80px;color:var(--gold);font-weight:900;">N</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nav Cards -->
+  <section class="section section-dark">
+    <div class="section-header">
+      <div class="section-eyebrow">Explore</div>
+      <h2 class="section-title">What We <span>Offer</span></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="nav-cards">
+      <div class="nav-card" onclick="showPage('marathon')">
+        <div class="nav-card-icon">🏃‍♂️</div>
+        <div class="nav-card-title">Marathon Event</div>
+        <div class="nav-card-desc">Register for our annual marathon. Choose 5K, 10K or Half Marathon categories.</div>
+      </div>
+      <div class="nav-card" onclick="showPage('members')">
+        <div class="nav-card-icon">👥</div>
+        <div class="nav-card-title">Our Members</div>
+        <div class="nav-card-desc">Meet the dedicated team driving Netaji Welfare Association forward.</div>
+      </div>
+      <div class="nav-card" onclick="showPage('announcements')">
+        <div class="nav-card-icon">📢</div>
+        <div class="nav-card-title">Announcements</div>
+        <div class="nav-card-desc">Stay updated with the latest news, events, and community updates.</div>
+      </div>
+      <div class="nav-card" onclick="showPage('gallery')">
+        <div class="nav-card-icon">🖼️</div>
+        <div class="nav-card-title">Gallery</div>
+        <div class="nav-card-desc">Browse photos from our marathons, events, and community activities.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Preview -->
+  <section class="section section-mid">
+    <div class="section-header">
+      <div class="section-eyebrow">Memories</div>
+      <h2 class="section-title">Photo <span>Gallery</span></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="gallery-grid" id="homeGalleryGrid"></div>
+    <div style="text-align:center;margin-top:32px;">
+      <button class="btn btn-outline" onclick="showPage('gallery')">View Full Gallery →</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="logo-placeholder" id="footerLogoWrap">N</div>
+          <div>
+            <h3>Netaji Welfare Association</h3>
+            <p>Rise and Roar · Est. 2024</p>
+          </div>
+        </div>
+        <p class="footer-desc">A community-driven NGO promoting health, youth empowerment, and unity through action. Together, we Rise and Roar.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/share/1Cc9CgMRCt/" target="_blank" class="social-link">f</a>
+          <a href="https://www.instagram.com/netaji_welfare_association_24" target="_blank" class="social-link" style="font-size:11px;font-weight:900;">ig</a>
+          <a href="/cdn-cgi/l/email-protection#7a141f0e1b10130d1b484a484e3a1d171b131654191517" class="social-link" style="font-size:12px;">✉</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#" onclick="showPage('home')">Home</a></li>
+          <li><a href="#" onclick="showPage('marathon')">Marathon</a></li>
+          <li><a href="#" onclick="showPage('members')">Members</a></li>
+          <li><a href="#" onclick="showPage('announcements')">Announcements</a></li>
+          <li><a href="#" onclick="showPage('gallery')">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="/cdn-cgi/l/email-protection#e8868d9c8982819f89dad8dadca88f85898184c68b8785"><span class="__cf_email__" data-cfemail="dab4bfaebbb0b3adbbe8eae8ee9abdb7bbb3b6f4b9b5b7">[email&#160;protected]</span></a></li>
+          <li><a href="https://www.facebook.com/share/1Cc9CgMRCt/" target="_blank">Facebook Page</a></li>
+          <li><a href="https://www.instagram.com/netaji_welfare_association_24" target="_blank">Instagram</a></li>
+          <li><a href="#" onclick="showPage('adminLogin')">Admin Login</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Netaji Welfare Association. All rights reserved.</span>
+      <span>Rise and Roar 🦁</span>
+    </div>
+  </footer>
+
+</div><!-- end homePage -->
+
+<!-- ═══════════════════════════════════════════════════
+  MARATHON PAGE
+═══════════════════════════════════════════════════ -->
+<div class="page" id="marathonPage">
+  <div style="padding-top:70px;">
+    <div class="marathon-hero">
+      <div class="section-eyebrow" style="margin-bottom:12px;">Annual Event</div>
+      <h1 class="section-title">🏃 Marathon <span>Registration</span></h1>
+      <p style="color:var(--text-muted);font-size:15px;max-width:500px;margin:0 auto;">Rise and Roar – Join our community marathon and push your limits!</p>
+    </div>
+    <div class="section section-dark" id="marathonContent"></div>
+  </div>
+  <footer style="background:var(--navy-dark);border-top:1px solid var(--border);padding:20px 5%;text-align:center;font-size:12px;color:var(--text-muted);">
+    © 2024 Netaji Welfare Association · <a href="#" onclick="showPage('home')" style="color:var(--gold);text-decoration:none;">Back to Home</a>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  REGISTRATION PAGE
+═══════════════════════════════════════════════════ -->
+<div class="page" id="registrationPage">
+  <div class="form-page" style="padding-top:100px;">
+    <div class="form-wrap">
+      <div class="form-title">📝 Registration Form</div>
+      <p class="form-subtitle">Fill in all details carefully. All fields are mandatory.</p>
+      <div class="admin-card" id="regEventInfo"></div>
+      <br>
+      <div class="form-grid" id="regForm">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="reg_name" placeholder="Enter your full name">
+          <div class="form-error" id="err_name"></div>
+        </div>
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" id="reg_email" placeholder="your@email.com">
+          <div class="form-error" id="err_email"></div>
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" id="reg_phone" placeholder="10-digit mobile number">
+          <div class="form-error" id="err_phone"></div>
+        </div>
+        <div class="form-group">
+          <label>Age *</label>
+          <input type="number" id="reg_age" placeholder="Your age" min="5" max="100">
+          <div class="form-error" id="err_age"></div>
+        </div>
+        <div class="form-group">
+          <label>Gender *</label>
+          <select id="reg_gender">
+            <option value="">Select gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+          <div class="form-error" id="err_gender"></div>
+        </div>
+        <div class="form-group">
+          <label>T-Shirt Size *</label>
+          <select id="reg_tshirt">
+            <option value="">Select size</option>
+            <option>XS</option><option>S</option><option>M</option>
+            <option>L</option><option>XL</option><option>XXL</option>
+          </select>
+          <div class="form-error" id="err_tshirt"></div>
+        </div>
+        <div class="form-group form-full">
+          <label>Marathon Category *</label>
+          <select id="reg_category">
+            <option value="">Select category</option>
+            <option>5 KM</option>
+            <option>10 KM</option>
+            <option>Half Marathon (21.1 KM)</option>
+          </select>
+          <div class="form-error" id="err_category"></div>
+        </div>
+        <div class="form-group form-full">
+          <label>Full Address *</label>
+          <input type="text" id="reg_address" placeholder="Street, City, State, PIN">
+          <div class="form-error" id="err_address"></div>
+        </div>
+        <div class="form-group form-full">
+          <label>Emergency Contact (Name & Phone) *</label>
+          <input type="text" id="reg_emergency" placeholder="E.g. Ramesh Kumar – 9876543210">
+          <div class="form-error" id="err_emergency"></div>
+        </div>
+      </div>
+      <br>
+      <button class="btn btn-gold" style="width:100%;justify-content:center;padding:16px;" onclick="submitRegistration()">
+        Proceed to Payment →
+      </button>
+      <br><br>
+      <a href="#" onclick="showPage('marathon')" style="color:var(--text-muted);font-size:13px;">← Back to Marathon Page</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  PAYMENT PAGE
+═══════════════════════════════════════════════════ -->
+<div class="page" id="paymentPage">
+  <div class="payment-page">
+    <div class="payment-wrap">
+      <h2 style="font-family:var(--font-display);font-size:28px;color:var(--gold);margin-bottom:8px;">💳 Complete Payment</h2>
+      <p style="color:var(--text-muted);font-size:14px;margin-bottom:32px;">Please complete your payment to confirm registration.</p>
+
+      <div class="payment-amount">
+        <div class="amount-label">REGISTRATION FEE</div>
+        <div class="amount-value" id="payAmountDisplay">₹0</div>
+        <div class="amount-event" id="payEventName">—</div>
+      </div>
+
+      <div class="payment-instructions" id="paymentInstructionsBox">
+        <h4>📲 Payment Instructions</h4>
+        <div id="upiDetailsDisplay"></div>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:12px;line-height:1.6;">
+          ⚠️ After making the payment, click <strong>"I Have Completed Payment"</strong>. Your registration will be marked as Payment Pending and verified by our team.
+        </p>
+      </div>
+
+      <div class="admin-card" style="margin-bottom:20px;">
+        <h4 style="font-family:var(--font-display);color:var(--gold-light);font-size:14px;margin-bottom:12px;">Your Registration Details</h4>
+        <div id="payRegistrantSummary"></div>
+      </div>
+
+      <button class="btn btn-gold" style="width:100%;justify-content:center;padding:16px;" onclick="completePayment()">
+        ✅ I Have Completed Payment
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  SUCCESS PAGE
+═══════════════════════════════════════════════════ -->
+<div class="page" id="successPage">
+  <div class="success-page">
+    <div class="success-wrap">
+      <div class="success-icon">✓</div>
+      <h2 style="font-family:var(--font-display);font-size:28px;color:var(--white);margin-bottom:8px;">Registration Successful!</h2>
+      <p style="color:var(--text-muted);font-size:14px;margin-bottom:24px;">Thank you for registering. Your participation has been recorded.</p>
+
+      <div class="success-card" id="successDetails"></div>
+
+      <p style="font-size:13px;color:var(--text-muted);margin:20px 0;">
+        🔔 Your payment will be verified by our team. Please save your Registration ID for reference.
+      </p>
+
+      <button class="btn btn-gold" style="width:100%;justify-content:center;padding:14px;margin-bottom:12px;" onclick="downloadConfirmation()">
+        📄 Download Confirmation
+      </button>
+      <button class="btn btn-outline" style="width:100%;justify-content:center;padding:14px;" onclick="showPage('home')">
+        ← Back to Home
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  MEMBERS PAGE
+═══════════════════════════════════════════════════ -->
+<div class="page" id="membersPage">
+  <div style="padding-top:70px;">
+    <div class="marathon-hero">
+      <div class="section-eyebrow" style="margin-bottom:12px;">Our People</div>
+      <h1 class="section-title">Meet the <span>Team</span></h1>
+      <p style="color:var(--text-muted);font-size:15px;">The dedicated individuals powering Netaji Welfare Association</p>
+    </div>
+    <div class="section section-dark">
+      <div class="members-grid" id="membersGrid"></div>
+    </div>
+  </div>
+  <footer style="background:var(--navy-dark);border-top:1px solid var(--border);padding:20px 5%;text-align:center;font-size:12px;color:var(--text-muted);">
+    © 2024 Netaji Welfare Association · <a href="#" onclick="showPage('home')" style="color:var(--gold);text-decoration:none;">Back to Home</a>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  ANNOUNCEMENTS PAGE
+═══════════════════════════════════════════════════ -->
+<div class="page" id="announcementsPage">
+  <div style="padding-top:70px;">
+    <div class="marathon-hero">
+      <div class="section-eyebrow" style="margin-bottom:12px;">Latest Updates</div>
+      <h1 class="section-title">📢 <span>Announcements</span></h1>
+      <p style="color:var(--text-muted);font-size:15px;">Stay informed with news and updates from Netaji Welfare Association</p>
+    </div>
+    <div class="section section-dark">
+      <div class="announcements-list" id="announcementsList"></div>
+    </div>
+  </div>
+  <footer style="background:var(--navy-dark);border-top:1px solid var(--border);padding:20px 5%;text-align:center;font-size:12px;color:var(--text-muted);">
+    © 2024 Netaji Welfare Association · <a href="#" onclick="showPage('home')" style="color:var(--gold);text-decoration:none;">Back to Home</a>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  GALLERY PAGE
+═══════════════════════════════════════════════════ -->
+<div class="page" id="galleryPage">
+  <div style="padding-top:70px;">
+    <div class="marathon-hero">
+      <div class="section-eyebrow" style="margin-bottom:12px;">Our Memories</div>
+      <h1 class="section-title">📸 Photo <span>Gallery</span></h1>
+      <p style="color:var(--text-muted);font-size:15px;">Moments from our marathons, events and community activities</p>
+    </div>
+    <div class="section section-dark">
+      <div class="gallery-grid" id="fullGalleryGrid"></div>
+      <div id="galleryEmpty" style="display:none;text-align:center;padding:60px 0;">
+        <div style="font-size:48px;margin-bottom:16px;">🖼️</div>
+        <p style="color:var(--text-muted);">No photos yet. Admin will add photos soon.</p>
+      </div>
+    </div>
+  </div>
+  <footer style="background:var(--navy-dark);border-top:1px solid var(--border);padding:20px 5%;text-align:center;font-size:12px;color:var(--text-muted);">
+    © 2024 Netaji Welfare Association · <a href="#" onclick="showPage('home')" style="color:var(--gold);text-decoration:none;">Back to Home</a>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  ADMIN LOGIN
+═══════════════════════════════════════════════════ -->
+<div class="page" id="adminLoginPage">
+  <div class="admin-login-card">
+    <div class="admin-login-icon">🔐</div>
+    <h2>Admin Login</h2>
+    <p>Access the management panel</p>
+    <div class="admin-form-group" style="text-align:left;margin-bottom:16px;">
+      <label>Username</label>
+      <input type="text" id="adminUser" placeholder="Enter username">
+    </div>
+    <div class="admin-form-group" style="text-align:left;margin-bottom:16px;">
+      <label>Password</label>
+      <input type="password" id="adminPass" placeholder="Enter password" onkeydown="if(event.key==='Enter')adminLogin()">
+    </div>
+    <button class="btn btn-gold" style="width:100%;justify-content:center;" onclick="adminLogin()">Login →</button>
+    <div class="login-error" id="loginError"></div>
+    <br>
+    <a href="#" onclick="showPage('home')" style="color:var(--text-muted);font-size:13px;">← Back to Website</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+  ADMIN PANEL
+═══════════════════════════════════════════════════ -->
+<div class="page" id="adminPanelPage">
+  <div class="admin-nav">
+    <div class="admin-nav-brand">🦁 Admin Panel</div>
+    <div class="admin-tab active" onclick="switchAdminTab('dashboard')">Dashboard</div>
+    <div class="admin-tab" onclick="switchAdminTab('marathon')">Marathon</div>
+    <div class="admin-tab" onclick="switchAdminTab('registrations')">Registrations</div>
+    <div class="admin-tab" onclick="switchAdminTab('members')">Members</div>
+    <div class="admin-tab" onclick="switchAdminTab('announcements')">Announcements</div>
+    <div class="admin-tab" onclick="switchAdminTab('gallery')">Gallery</div>
+    <div class="admin-tab" onclick="switchAdminTab('payment')">Payment Settings</div>
+    <div class="admin-tab" onclick="switchAdminTab('branding')">🖼️ Logo</div>
+    <button class="admin-logout" onclick="adminLogout()">Logout</button>
+  </div>
+
+  <div class="admin-content">
+
+    <!-- DASHBOARD -->
+    <div class="admin-section active" id="tab-dashboard">
+      <div class="admin-section-title">📊 Dashboard Overview</div>
+      <div class="stats-grid" id="dashStats"></div>
+      <div class="admin-card">
+        <h3 style="font-family:var(--font-display);color:var(--gold-light);font-size:16px;margin-bottom:16px;">Recent Registrations</h3>
+        <div style="overflow-x:auto;">
+          <table class="admin-table" id="dashRegTable">
+            <thead><tr><th>Name</th><th>Event</th><th>Category</th><th>Payment</th><th>Date</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARATHON -->
+    <div class="admin-section" id="tab-marathon">
+      <div class="admin-section-title">🏃 Marathon Event Management</div>
+      <div class="admin-card">
+        <h3 style="font-family:var(--font-display);color:var(--gold-light);font-size:16px;margin-bottom:20px;" id="marathonFormTitle">Create Marathon Event</h3>
+        <div class="admin-form-grid">
+          <div class="admin-form-group"><label>Event Name *</label><input type="text" id="m_name" placeholder="e.g. Netaji Marathon 2025"></div>
+          <div class="admin-form-group"><label>Event Date *</label><input type="date" id="m_date"></div>
+          <div class="admin-form-group"><label>Registration Fee (₹) *</label><input type="number" id="m_fee" placeholder="e.g. 300" min="0"></div>
+          <div class="admin-form-group"><label>Status</label>
+            <select id="m_status">
+              <option value="open">Open (Registrations Active)</option>
+              <option value="closed">Closed (No Registrations)</option>
+            </select>
+          </div>
+          <div class="admin-form-group admin-form-full"><label>Event Description</label><textarea id="m_desc" rows="3" placeholder="Describe the event..."></textarea></div>
+        </div>
+        <br>
+        <button class="btn btn-gold" onclick="saveMarathon()" style="margin-right:8px;">💾 Save Event</button>
+        <button class="btn btn-outline" onclick="clearMarathonForm()" style="padding:10px 20px;font-size:13px;">Clear</button>
+      </div>
+
+      <div class="admin-card" id="currentEventCard">
+        <h3 style="font-family:var(--font-display);color:var(--gold-light);font-size:16px;margin-bottom:16px;">Current Event</h3>
+        <div id="currentEventDisplay"></div>
+      </div>
+    </div>
+
+    <!-- REGISTRATIONS -->
+    <div class="admin-section" id="tab-registrations">
+      <div class="admin-section-title">📋 Registration Management</div>
+      <div class="search-filter">
+        <input type="text" id="regSearch" placeholder="Search by name, email, phone..." oninput="renderRegistrationsTable()">
+        <select id="regFilterPay" onchange="renderRegistrationsTable()" style="background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:white;outline:none;">
+          <option value="">All Payment Status</option>
+          <option value="pending">Pending</option>
+          <option value="verified">Verified</option>
+        </select>
+      </div>
+      <button class="export-btn" onclick="exportRegistrations()">📥 Export CSV</button>
+      <div style="overflow-x:auto;">
+        <table class="admin-table" id="regTable">
+          <thead>
+            <tr>
+              <th>Reg. ID</th><th>Name</th><th>Email</th><th>Phone</th>
+              <th>Age</th><th>Category</th><th>T-Shirt</th><th>Payment</th>
+              <th>Date</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="regTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MEMBERS -->
+    <div class="admin-section" id="tab-members">
+      <div class="admin-section-title">👥 Members Management</div>
+      <div class="admin-card">
+        <h3 style="font-family:var(--font-display);color:var(--gold-light);font-size:16px;margin-bottom:20px;" id="memberFormTitle">Add New Member</h3>
+        <div class="admin-form-grid">
+          <div class="admin-form-group"><label>Full Name *</label><input type="text" id="mem_name" placeholder="Member's full name"></div>
+          <div class="admin-form-group"><label>Designation / Role *</label><input type="text" id="mem_role" placeholder="e.g. President, Secretary"></div>
+          <div class="admin-form-group admin-form-full"><label>Short Bio</label><textarea id="mem_bio" rows="2" placeholder="Brief description..."></textarea></div>
+          <div class="admin-form-group admin-form-full">
+            <label>Photo (Upload Image)</label>
+            <input type="file" id="mem_photo" accept="image/*" onchange="previewMemberPhoto(this)">
+            <div style="margin-top:8px;" id="memPhotoPreview"><div class="img-preview">👤</div></div>
+          </div>
+        </div>
+        <input type="hidden" id="mem_editId">
+        <br>
+        <button class="btn btn-gold" onclick="saveMember()" style="margin-right:8px;">💾 Save Member</button>
+        <button class="btn btn-outline" onclick="clearMemberForm()" style="padding:10px 20px;font-size:13px;">Clear</button>
+      </div>
+
+      <div class="admin-card">
+        <h3 style="font-family:var(--font-display);color:var(--gold-light);font-size:16px;margin-bottom:16px;">All Members</h3>
+        <div style="overflow-x:auto;">
+          <table class="admin-table" id="membersTable">
+            <thead><tr><th>Photo</th><th>Name</th><th>Role</th><th>Bio</th><th>Actions</th></tr></thead>
+            <tbody id="membersTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANNOUNCEMENTS -->
+    <div class="admin-section" id="tab-announcements">
+      <div class="admin-section-title">📢 Announcements Management</div>
+      <div class="admin-card">
+        <h3 style="font-family:var(--font-display);color:var(--gold-light);font-size:16px;margin-bottom:20px;" id="annFormTitle">Add Announcement</h3>
+        <div class="admin-form-grid">
+          <div class="admin-form-group admin-form-full"><label>Title *</label><input type="text" id="ann_title" placeholder="Announcement title"></div>
+          <div class="admin-form-group admin-form-full"><label>Description *</label><textarea id="ann_desc" rows="3" placeholder="Full announcement text..."></textarea></div>
+          <div class="admin-form-group admin-form-full">
+            <label>Image (Optional)</label>
+            <input type="file" id="ann_img" accept="image/*" onchange="previewAnnImg(this)">
+            <div style="margin-top:8px;" id="annImgPreview"><div class="img-preview">📢</div></div>
+          </div>
+        </div>
+        <input type="hidden" id="ann_editId">
+        <br>
+        <button class="btn btn-gold" onclick="saveAnnouncement()" style="margin-right:8px;">💾 Save Announcement</button>
+        <button class="btn btn-outline" onclick="clearAnnForm()" style="padding:10px 20px;font-size:13px;">Clear</button>
+      </div>
+
+      <div class="admin-card">
+        <h3 style="font-family:var(--font-display);color:var(--gold-light);font-size:16px;margin-bottom:16px;">All Announcements</h3>
+        <table class="admin-table">
+          <thead><tr><th>Image</th><th>Title</th><th>Description</th><th>Date</th><th>Actions</th></tr></thead>
+          <tbody id="annTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- GALLERY ADMIN -->
+    <div class="admin-section" id="tab-gallery">
+      <div class="admin-section-title">🖼️ Gallery Management</div>
+      <div class="admin-card">
+        <h3 style="font-family:var(--font-display);color:var(--gold-light);font-size:16px;margin-bottom:16px;">Upload Photos</h3>
+        <div class="admin-form-group" style="margin-bottom:16px;">
+          <label>Select Images (Multiple Allowed)</label>
+          <input type="file" id="gallery_upload" accept="image/*" multiple onchange="uploadGalleryImages(this)">
+        </div>
+        <div class="admin-form-group" style="margin-bottom:16px;">
+          <label>Caption (Optional – applies to all selected)</label>
+          <input type="text" id="gallery_caption" placeholder="e.g. Marathon 2025">
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h3 style="font-family:var(--font-display);color:var(--gold-light);font-size:16px;margin-bottom:16px;">Gallery Photos</h3>
+        <div class="gallery-admin-grid" id="galleryAdminGrid"></div>
+        <div id="galleryAdminEmpty" style="display:none;text-align:center;padding:40px 0;color:var(--text-muted);">No photos uploaded yet.</div>
+      </div>
+    </div>
+
+    <!-- PAYMENT SETTINGS -->
+    <div class="admin-section" id="tab-payment">
+      <div class="admin-section-title">💳 Payment Settings</div>
+      <div class="admin-card">
+        <h3 style="font-family:var(--font-display);color:var(--gold-light);font-size:16px;margin-bottom:20px;">UPI Payment Details</h3>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">These details will be shown to participants on the payment page.</p>
+        <div class="admin-form-grid">
+          <div class="admin-form-group"><label>UPI ID *</label><input type="text" id="pay_upi" placeholder="e.g. netaji@upi"></div>
+          <div class="admin-form-group"><label>Account Holder Name *</label><input type="text" id="pay_name" placeholder="Name on UPI account"></div>
+          <div class="admin-form-group admin-form-full"><label>Additional Payment Instructions</label><textarea id="pay_instructions" rows="3" placeholder="e.g. Use your registered mobile number as reference..."></textarea></div>
+          <div class="admin-form-group admin-form-full">
+            <label>QR Code Image (Optional)</label>
+            <input type="file" id="pay_qr" accept="image/*" onchange="previewQR(this)">
+            <div style="margin-top:8px;" id="qrPreview"><div class="img-preview">📱</div></div>
+          </div>
+        </div>
+        <br>
+        <button class="btn btn-gold" onclick="savePaymentSettings()">💾 Save Payment Settings</button>
+      </div>
+
+      <div class="admin-card">
+        <h3 style="font-family:var(--font-display);color:var(--gold-light);font-size:16px;margin-bottom:16px;">Current Settings</h3>
+        <div id="currentPaySettings"></div>
+      </div>
+    </div>
+
+    <!-- BRANDING / LOGO -->
+    <div class="admin-section" id="tab-branding">
+      <div class="admin-section-title">🖼️ Website Logo</div>
+      <div class="admin-card">
+        <h3 style="font-family:var(--font-display);color:var(--gold-light);font-size:16px;margin-bottom:8px;">Upload NGO Logo</h3>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;">
+          Uploading a logo here will instantly update it everywhere on the website — navbar, hero section, about section, and footer. Recommended: square image (PNG with transparent background works best), under 2MB.
+        </p>
+
+        <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:24px;">
+          <div id="adminLogoPreview" style="width:100px;height:100px;border-radius:50%;border:3px solid var(--gold);background:var(--navy-dark);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:var(--shadow-gold);">
+            <span style="font-size:32px;">🖼️</span>
+          </div>
+          <div>
+            <div style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Current logo preview (updates live when you upload)</div>
+            <div class="admin-form-group">
+              <label>Choose Logo Image</label>
+              <input type="file" id="logoUploadInput" accept="image/*" onchange="handleLogoUpload(this)">
+            </div>
+          </div>
+        </div>
+
+        <div style="background:rgba(212,160,23,0.06);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:20px;">
+          <p style="font-size:12px;color:var(--text-muted);line-height:1.8;">
+            ✅ <strong style="color:var(--gold-light);">Where it appears:</strong> Navbar top-left · Hero section circle · About section ring · Footer brand logo<br>
+            📐 <strong style="color:var(--gold-light);">Best format:</strong> Square (1:1 ratio), PNG or JPG, minimum 200×200px, max 2MB<br>
+            💾 <strong style="color:var(--gold-light);">Saved automatically</strong> in the browser — logo persists even after page refresh
+          </p>
+        </div>
+
+        <button class="btn btn-outline" style="padding:10px 20px;font-size:13px;border-color:var(--red);color:var(--red-light);" onclick="removeLogo()">
+          🗑️ Remove Logo (Revert to Default)
+        </button>
+      </div>
+
+      <div class="admin-card">
+        <h3 style="font-family:var(--font-display);color:var(--gold-light);font-size:16px;margin-bottom:16px;">Live Preview</h3>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">This is how the logo looks in the navbar:</p>
+        <div style="background:rgba(8,15,36,0.95);border:1px solid var(--border);border-radius:12px;padding:16px 24px;display:flex;align-items:center;gap:12px;">
+          <div id="adminLogoPreview2" style="width:48px;height:48px;border-radius:50%;border:2px solid var(--gold);background:var(--navy-mid);display:flex;align-items:center;justify-content:center;overflow:hidden;font-family:var(--font-display);font-size:18px;color:var(--gold);font-weight:700;">N</div>
+          <div style="font-family:var(--font-display);font-size:13px;color:var(--gold);">Netaji Welfare Association<br><span style="font-size:9px;color:var(--text-muted);letter-spacing:2px;">RISE AND ROAR · EST. 2024</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end admin-content -->
+</div><!-- end adminPanelPage -->
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img src="" id="lightboxImg" alt="">
+</div>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ═══════════════════════════════════════════════
+// DATA STORAGE (localStorage)
+// ═══════════════════════════════════════════════
+
+const LS = {
+  get: (k, def) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; } catch { return def; } },
+  set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+
+const DB = {
+  get marathon() { return LS.get('nwa_marathon', null); },
+  set marathon(v) { LS.set('nwa_marathon', v); },
+  get registrations() { return LS.get('nwa_registrations', []); },
+  set registrations(v) { LS.set('nwa_registrations', v); },
+  get members() { return LS.get('nwa_members', []); },
+  set members(v) { LS.set('nwa_members', v); },
+  get announcements() { return LS.get('nwa_announcements', []); },
+  set announcements(v) { LS.set('nwa_announcements', v); },
+  get gallery() { return LS.get('nwa_gallery', []); },
+  set gallery(v) { LS.set('nwa_gallery', v); },
+  get paymentSettings() { return LS.get('nwa_payment', { upi: '', name: 'Netaji Welfare Association', instructions: 'Transfer the exact amount and keep the screenshot.', qr: '' }); },
+  set paymentSettings(v) { LS.set('nwa_payment', v); },
+  get logo() { return LS.get('nwa_logo', ''); },
+  set logo(v) { LS.set('nwa_logo', v); }
+};
+
+// Temp registration state
+let tempRegistration = {};
+
+// Admin credentials (hardcoded)
+const ADMIN_USER = 'netaji_admin';
+const ADMIN_PASS = 'NWA@2024Rise';
+let isAdminLoggedIn = false;
+
+// ═══════════════════════════════════════════════
+// PAGE NAVIGATION
+// ═══════════════════════════════════════════════
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const page = document.getElementById(name + 'Page');
+  if (page) { page.classList.add('active'); window.scrollTo(0,0); }
+  updateNavLinks(name);
+
+  if (name === 'home') renderHomeGallery();
+  if (name === 'marathon') renderMarathonPage();
+  if (name === 'members') renderMembersPage();
+  if (name === 'announcements') renderAnnouncementsPage();
+  if (name === 'gallery') renderGalleryPage();
+  if (name === 'adminLogin' && isAdminLoggedIn) { showPage('adminPanel'); return; }
+  if (name === 'adminPanel') renderAdminPanel();
+}
+
+function updateNavLinks(page) {
+  ['Home','Marathon','Members','Announcements','Gallery'].forEach(n => {
+    const el = document.getElementById('nav' + n);
+    if (el) el.classList.toggle('active-link', page === n.toLowerCase());
+  });
+}
+
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════
+
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type === 'error' ? ' error' : '');
+  setTimeout(() => t.className = 'toast', 3000);
+}
+
+// ═══════════════════════════════════════════════
+// HOME GALLERY PREVIEW
+// ═══════════════════════════════════════════════
+
+function renderHomeGallery() {
+  const grid = document.getElementById('homeGalleryGrid');
+  const gallery = DB.gallery.slice(0, 8);
+  if (gallery.length === 0) {
+    grid.innerHTML = '<p style="color:var(--text-muted);text-align:center;width:100%;padding:40px 0;">Photos will appear here once uploaded by admin.</p>';
+    return;
+  }
+  grid.innerHTML = gallery.map(g => `
+    <div class="gallery-item" onclick="openLightbox('${g.src}')">
+      <img src="${g.src}" alt="${g.caption || 'Event Photo'}">
+      <div class="gallery-label">${g.caption || ''}</div>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════════
+// MARATHON PAGE
+// ═══════════════════════════════════════════════
+
+function renderMarathonPage() {
+  const m = DB.marathon;
+  const content = document.getElementById('marathonContent');
+  if (!m || m.status === 'closed') {
+    content.innerHTML = `
+      <div class="no-event">
+        <div class="icon">🏃</div>
+        <h3>No active marathon registrations available</h3>
+        <p style="color:var(--text-muted);font-size:13px;margin-top:12px;">Please check back later or follow us on social media for updates.</p>
+        <br>
+        <a href="https://www.facebook.com/share/1Cc9CgMRCt/" target="_blank" class="btn btn-outline" style="margin-right:8px;">Facebook</a>
+        <a href="https://www.instagram.com/netaji_welfare_association_24" target="_blank" class="btn btn-outline">Instagram</a>
+      </div>`;
+    return;
+  }
+  content.innerHTML = `
+    <div class="event-card">
+      <div class="event-badge">🟢 Registration Open</div>
+      <div class="event-name">${m.name}</div>
+      <div class="event-meta">
+        <div class="event-meta-item"><div class="label">Date</div><div class="value">${formatDate(m.date)}</div></div>
+        <div class="event-meta-item"><div class="label">Fee</div><div class="value">₹${m.fee}</div></div>
+        <div class="event-meta-item"><div class="label">Categories</div><div class="value">5K / 10K / Half</div></div>
+      </div>
+      <p class="event-desc">${m.description || 'Join us for an exciting marathon event. Push your limits, run your story!'}</p>
+      <button class="btn btn-gold" onclick="showPage('registration')" style="width:100%;justify-content:center;padding:16px;font-size:16px;">
+        🏃 Register Now →
+      </button>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════
+// REGISTRATION FORM
+// ═══════════════════════════════════════════════
+
+function showPage_registration() {
+  const m = DB.marathon;
+  const info = document.getElementById('regEventInfo');
+  if (m) {
+    info.innerHTML = `<strong style="color:var(--gold);">${m.name}</strong> &nbsp;|&nbsp; 📅 ${formatDate(m.date)} &nbsp;|&nbsp; 💰 ₹${m.fee}`;
+  }
+  showPage('registration');
+}
+
+function submitRegistration() {
+  const fields = [
+    { id: 'reg_name', err: 'err_name', msg: 'Full name is required', check: v => v.length >= 2 },
+    { id: 'reg_email', err: 'err_email', msg: 'Valid email required', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+    { id: 'reg_phone', err: 'err_phone', msg: 'Valid 10-digit phone required', check: v => /^[6-9]\d{9}$/.test(v) },
+    { id: 'reg_age', err: 'err_age', msg: 'Age must be 5–100', check: v => v >= 5 && v <= 100 },
+    { id: 'reg_gender', err: 'err_gender', msg: 'Select gender', check: v => v !== '' },
+    { id: 'reg_tshirt', err: 'err_tshirt', msg: 'Select T-Shirt size', check: v => v !== '' },
+    { id: 'reg_category', err: 'err_category', msg: 'Select marathon category', check: v => v !== '' },
+    { id: 'reg_address', err: 'err_address', msg: 'Address is required', check: v => v.length >= 5 },
+    { id: 'reg_emergency', err: 'err_emergency', msg: 'Emergency contact required', check: v => v.length >= 5 }
+  ];
+
+  let valid = true;
+  fields.forEach(f => {
+    const el = document.getElementById(f.id);
+    const err = document.getElementById(f.err);
+    const val = el.value.trim();
+    if (!f.check(val)) {
+      err.textContent = f.msg;
+      el.closest('.form-group').classList.add('has-error');
+      valid = false;
+    } else {
+      err.textContent = '';
+      el.closest('.form-group').classList.remove('has-error');
+    }
+  });
+
+  if (!valid) { showToast('Please fix the errors above', 'error'); return; }
+
+  const m = DB.marathon;
+  tempRegistration = {
+    name: document.getElementById('reg_name').value.trim(),
+    email: document.getElementById('reg_email').value.trim(),
+    phone: document.getElementById('reg_phone').value.trim(),
+    age: document.getElementById('reg_age').value,
+    gender: document.getElementById('reg_gender').value,
+    tshirt: document.getElementById('reg_tshirt').value,
+    category: document.getElementById('reg_category').value,
+    address: document.getElementById('reg_address').value.trim(),
+    emergency: document.getElementById('reg_emergency').value.trim(),
+    eventName: m.name,
+    eventDate: m.date,
+    fee: m.fee,
+    eventId: m.id
+  };
+
+  // Show payment page
+  renderPaymentPage();
+  showPage('payment');
+}
+
+// ═══════════════════════════════════════════════
+// PAYMENT PAGE
+// ═══════════════════════════════════════════════
+
+function renderPaymentPage() {
+  const r = tempRegistration;
+  const ps = DB.paymentSettings;
+
+  document.getElementById('payAmountDisplay').textContent = '₹' + r.fee;
+  document.getElementById('payEventName').textContent = r.eventName;
+
+  let upiHtml = '';
+  if (ps.upi) {
+    upiHtml += `<div class="upi-detail">
+      <div class="upi-label">UPI ID</div>
+      <div class="upi-value">${ps.upi} <button class="copy-btn" onclick="copyToClipboard('${ps.upi}')">Copy</button></div>
+      <small>Account: ${ps.name}</small>
+    </div>`;
+  }
+  if (ps.qr) {
+    upiHtml += `<div style="text-align:center;margin:12px 0;"><img src="${ps.qr}" style="max-width:180px;border-radius:8px;border:2px solid var(--border);" alt="QR Code"></div>`;
+  }
+  if (ps.instructions) {
+    upiHtml += `<p style="font-size:13px;color:var(--text-muted);margin-top:8px;">${ps.instructions}</p>`;
+  }
+  if (!ps.upi && !ps.qr) {
+    upiHtml = '<p style="color:var(--text-muted);font-size:14px;text-align:center;">Payment details will be provided by the organizers. Please contact us.</p>';
+  }
+  document.getElementById('upiDetailsDisplay').innerHTML = upiHtml;
+
+  document.getElementById('payRegistrantSummary').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
+      <div style="color:var(--text-muted);">Name:</div><div style="color:var(--white);font-weight:600;">${r.name}</div>
+      <div style="color:var(--text-muted);">Category:</div><div style="color:var(--gold);">${r.category}</div>
+      <div style="color:var(--text-muted);">Phone:</div><div>${r.phone}</div>
+      <div style="color:var(--text-muted);">T-Shirt:</div><div>${r.tshirt}</div>
+    </div>`;
+}
+
+function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => showToast('UPI ID copied!'));
+}
+
+function completePayment() {
+  const r = tempRegistration;
+  const regId = 'NWA-' + Date.now().toString(36).toUpperCase();
+  const reg = {
+    id: regId,
+    ...r,
+    paymentStatus: 'pending',
+    registeredAt: new Date().toISOString()
+  };
+
+  const regs = DB.registrations;
+  regs.push(reg);
+  DB.registrations = regs;
+
+  renderSuccessPage(reg);
+  showPage('success');
+}
+
+// ═══════════════════════════════════════════════
+// SUCCESS PAGE
+// ═══════════════════════════════════════════════
+
+function renderSuccessPage(reg) {
+  document.getElementById('successDetails').innerHTML = `
+    <div class="success-row"><span class="s-label">Registration ID</span><span class="s-value" style="font-size:16px;letter-spacing:1px;">${reg.id}</span></div>
+    <div class="success-row"><span class="s-label">Name</span><span class="s-value">${reg.name}</span></div>
+    <div class="success-row"><span class="s-label">Event</span><span class="s-value">${reg.eventName}</span></div>
+    <div class="success-row"><span class="s-label">Date</span><span class="s-value">${formatDate(reg.eventDate)}</span></div>
+    <div class="success-row"><span class="s-label">Category</span><span class="s-value">${reg.category}</span></div>
+    <div class="success-row"><span class="s-label">T-Shirt Size</span><span class="s-value">${reg.tshirt}</span></div>
+    <div class="success-row"><span class="s-label">Fee Paid</span><span class="s-value">₹${reg.fee}</span></div>
+    <div class="success-row"><span class="s-label">Payment Status</span><span class="s-value"><span class="tag tag-gold">Pending Verification</span></span></div>
+  `;
+  // Store last reg for download
+  window._lastReg = reg;
+}
+
+function downloadConfirmation() {
+  const reg = window._lastReg;
+  if (!reg) return;
+  const content = `
+NETAJI WELFARE ASSOCIATION
+Rise and Roar | Est. 2024
+================================
+PARTICIPATION CONFIRMATION
+
+Registration ID : ${reg.id}
+Name            : ${reg.name}
+Email           : ${reg.email}
+Phone           : ${reg.phone}
+Age             : ${reg.age}
+Gender          : ${reg.gender}
+Address         : ${reg.address}
+Emergency       : ${reg.emergency}
+
+Event           : ${reg.eventName}
+Date            : ${formatDate(reg.eventDate)}
+Category        : ${reg.category}
+T-Shirt Size    : ${reg.tshirt}
+Fee             : Rs. ${reg.fee}
+Payment Status  : Pending Verification
+
+Registration Date: ${new Date(reg.registeredAt).toLocaleString('en-IN')}
+================================
+Contact: netajiwa2024@gmail.com
+Facebook: fb.com/NetajiWelfareAssociation
+Instagram: @netaji_welfare_association_24
+================================
+Thank you for registering!
+Rise and Roar!
+  `;
+
+  const blob = new Blob([content], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `NWA_Confirmation_${reg.id}.txt`;
+  a.click();
+  showToast('Confirmation downloaded!');
+}
+
+// ═══════════════════════════════════════════════
+// MEMBERS PAGE
+// ═══════════════════════════════════════════════
+
+function renderMembersPage() {
+  const grid = document.getElementById('membersGrid');
+  const members = DB.members;
+  if (members.length === 0) {
+    grid.innerHTML = '<p style="color:var(--text-muted);text-align:center;width:100%;padding:60px 0;grid-column:1/-1;">No members added yet.</p>';
+    return;
+  }
+  grid.innerHTML = members.map(m => `
+    <div class="member-card">
+      <div class="member-photo">
+        ${m.photo ? `<img src="${m.photo}" alt="${m.name}">` : `<div class="member-initial">${m.name.charAt(0)}</div>`}
+      </div>
+      <div class="member-info">
+        <div class="member-name">${m.name}</div>
+        <div class="member-role">${m.role}</div>
+        <div class="member-bio">${m.bio || ''}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════════
+// ANNOUNCEMENTS PAGE
+// ═══════════════════════════════════════════════
+
+function renderAnnouncementsPage() {
+  const list = document.getElementById('announcementsList');
+  const anns = [...DB.announcements].reverse();
+  if (anns.length === 0) {
+    list.innerHTML = '<div class="no-event"><div class="icon">📢</div><h3>No announcements yet</h3></div>';
+    return;
+  }
+  list.innerHTML = anns.map(a => `
+    <div class="announcement-card">
+      <div class="announcement-img">
+        ${a.image ? `<img src="${a.image}" alt="${a.title}">` : `<div class="ann-icon">📢</div>`}
+      </div>
+      <div class="announcement-content">
+        <div class="announcement-date">📅 ${formatDate(a.date)}</div>
+        <div class="announcement-title">${a.title}</div>
+        <div class="announcement-desc">${a.description}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════════
+// GALLERY PAGE
+// ═══════════════════════════════════════════════
+
+function renderGalleryPage() {
+  const grid = document.getElementById('fullGalleryGrid');
+  const empty = document.getElementById('galleryEmpty');
+  const gallery = DB.gallery;
+  if (gallery.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  grid.innerHTML = gallery.map(g => `
+    <div class="gallery-item" onclick="openLightbox('${g.src}')">
+      <img src="${g.src}" alt="${g.caption || 'Photo'}">
+      <div class="gallery-label">${g.caption || ''}</div>
+    </div>
+  `).join('');
+}
+
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+
+// ═══════════════════════════════════════════════
+// ADMIN AUTH
+// ═══════════════════════════════════════════════
+
+function adminLogin() {
+  const u = document.getElementById('adminUser').value.trim();
+  const p = document.getElementById('adminPass').value;
+  if (u === ADMIN_USER && p === ADMIN_PASS) {
+    isAdminLoggedIn = true;
+    document.getElementById('loginError').textContent = '';
+    document.getElementById('adminUser').value = '';
+    document.getElementById('adminPass').value = '';
+    showPage('adminPanel');
+  } else {
+    document.getElementById('loginError').textContent = '❌ Invalid username or password.';
+  }
+}
+
+function adminLogout() {
+  isAdminLoggedIn = false;
+  showPage('home');
+  showToast('Logged out successfully');
+}
+
+// ═══════════════════════════════════════════════
+// ADMIN PANEL
+// ═══════════════════════════════════════════════
+
+function switchAdminTab(tab) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+
+  if (tab === 'dashboard') renderDashboard();
+  if (tab === 'registrations') renderRegistrationsTable();
+  if (tab === 'members') renderMembersTable();
+  if (tab === 'announcements') renderAnnTable();
+  if (tab === 'gallery') renderGalleryAdmin();
+  if (tab === 'payment') renderPaymentAdmin();
+  if (tab === 'branding') renderBrandingTab();
+  if (tab === 'marathon') renderMarathonAdmin();
+}
+
+function renderAdminPanel() {
+  renderDashboard();
+}
+
+function renderDashboard() {
+  const regs = DB.registrations;
+  const members = DB.members;
+  const anns = DB.announcements;
+  const m = DB.marathon;
+  const stats = document.getElementById('dashStats');
+  stats.innerHTML = `
+    <div class="stat-card"><div class="stat-num">${regs.length}</div><div class="stat-label">Total Registrations</div></div>
+    <div class="stat-card"><div class="stat-num">${regs.filter(r=>r.paymentStatus==='pending').length}</div><div class="stat-label">Payment Pending</div></div>
+    <div class="stat-card"><div class="stat-num">${members.length}</div><div class="stat-label">Team Members</div></div>
+    <div class="stat-card"><div class="stat-num">${m ? (m.status==='open'?'<span style="color:#2ecc71">Open</span>':'<span style="color:var(--red-light)">Closed</span>') : 'None'}</div><div class="stat-label">Marathon Status</div></div>
+  `;
+
+  const tbody = document.querySelector('#dashRegTable tbody');
+  const recent = [...regs].reverse().slice(0, 5);
+  tbody.innerHTML = recent.map(r => `
+    <tr>
+      <td style="color:white;">${r.name}</td>
+      <td>${r.eventName}</td>
+      <td>${r.category}</td>
+      <td><span class="tag ${r.paymentStatus==='verified'?'tag-green':'tag-gold'}">${r.paymentStatus}</span></td>
+      <td>${formatDate(r.registeredAt?.split('T')[0])}</td>
+    </tr>
+  `).join('') || '<tr><td colspan="5" style="text-align:center;padding:20px;color:var(--text-muted);">No registrations yet</td></tr>';
+}
+
+// ── MARATHON ADMIN ──
+function renderMarathonAdmin() {
+  const m = DB.marathon;
+  const el = document.getElementById('currentEventDisplay');
+  if (!m) {
+    el.innerHTML = '<p style="color:var(--text-muted);">No marathon event created yet.</p>';
+    return;
+  }
+  el.innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;margin-bottom:16px;">
+      <div><span style="color:var(--text-muted);">Name:</span> <strong style="color:white;">${m.name}</strong></div>
+      <div><span style="color:var(--text-muted);">Date:</span> <strong style="color:white;">${formatDate(m.date)}</strong></div>
+      <div><span style="color:var(--text-muted);">Fee:</span> <strong style="color:var(--gold);">₹${m.fee}</strong></div>
+      <div><span style="color:var(--text-muted);">Status:</span> <span class="tag ${m.status==='open'?'tag-green':'tag-red'}">${m.status}</span></div>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);">${m.description||''}</p>
+    <br>
+    <button class="action-btn action-btn-edit" onclick="editMarathon()">✏️ Edit</button>
+    <button class="action-btn action-btn-delete" style="margin-left:8px;" onclick="deleteMarathon()">🗑️ Delete</button>
+  `;
+}
+
+function saveMarathon() {
+  const name = document.getElementById('m_name').value.trim();
+  const date = document.getElementById('m_date').value;
+  const fee = document.getElementById('m_fee').value;
+  const status = document.getElementById('m_status').value;
+  const desc = document.getElementById('m_desc').value.trim();
+
+  if (!name || !date || !fee) { showToast('Please fill all required fields', 'error'); return; }
+
+  DB.marathon = { id: Date.now(), name, date, fee, status, description: desc };
+  showToast('Marathon event saved!');
+  clearMarathonForm();
+  renderMarathonAdmin();
+}
+
+function clearMarathonForm() {
+  ['m_name','m_date','m_fee','m_desc'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('m_status').value = 'open';
+}
+
+function editMarathon() {
+  const m = DB.marathon;
+  if (!m) return;
+  document.getElementById('m_name').value = m.name;
+  document.getElementById('m_date').value = m.date;
+  document.getElementById('m_fee').value = m.fee;
+  document.getElementById('m_status').value = m.status;
+  document.getElementById('m_desc').value = m.description || '';
+  document.getElementById('marathonFormTitle').textContent = 'Edit Marathon Event';
+}
+
+function deleteMarathon() {
+  if (!confirm('Delete this marathon event?')) return;
+  DB.marathon = null;
+  renderMarathonAdmin();
+  showToast('Event deleted');
+}
+
+// ── REGISTRATIONS TABLE ──
+function renderRegistrationsTable() {
+  const search = document.getElementById('regSearch')?.value.toLowerCase() || '';
+  const filterPay = document.getElementById('regFilterPay')?.value || '';
+  let regs = [...DB.registrations].reverse();
+
+  if (search) regs = regs.filter(r =>
+    r.name.toLowerCase().includes(search) ||
+    r.email.toLowerCase().includes(search) ||
+    r.phone.includes(search)
+  );
+  if (filterPay) regs = regs.filter(r => r.paymentStatus === filterPay);
+
+  const tbody = document.getElementById('regTableBody');
+  tbody.innerHTML = regs.map(r => `
+    <tr>
+      <td style="color:var(--gold);font-family:var(--font-display);font-size:11px;">${r.id}</td>
+      <td style="color:white;font-weight:600;">${r.name}</td>
+      <td>${r.email}</td>
+      <td>${r.phone}</td>
+      <td>${r.age}</td>
+      <td>${r.category}</td>
+      <td>${r.tshirt}</td>
+      <td><span class="tag ${r.paymentStatus==='verified'?'tag-green':'tag-gold'}">${r.paymentStatus}</span></td>
+      <td>${r.registeredAt ? new Date(r.registeredAt).toLocaleDateString('en-IN') : '—'}</td>
+      <td class="action-btns">
+        ${r.paymentStatus !== 'verified' ? `<button class="action-btn action-btn-edit" onclick="verifyPayment('${r.id}')">✓ Verify</button>` : ''}
+        <button class="action-btn action-btn-delete" onclick="deleteRegistration('${r.id}')">🗑</button>
+      </td>
+    </tr>
+  `).join('') || '<tr><td colspan="10" style="text-align:center;padding:20px;color:var(--text-muted);">No registrations found</td></tr>';
+}
+
+function verifyPayment(id) {
+  const regs = DB.registrations;
+  const r = regs.find(r => r.id === id);
+  if (r) { r.paymentStatus = 'verified'; DB.registrations = regs; renderRegistrationsTable(); showToast('Payment verified!'); }
+}
+
+function deleteRegistration(id) {
+  if (!confirm('Delete this registration?')) return;
+  DB.registrations = DB.registrations.filter(r => r.id !== id);
+  renderRegistrationsTable();
+  showToast('Registration deleted');
+}
+
+function exportRegistrations() {
+  const regs = DB.registrations;
+  if (!regs.length) { showToast('No registrations to export', 'error'); return; }
+  const headers = ['ID','Name','Email','Phone','Age','Gender','Category','T-Shirt','Address','Emergency','Event','Date','Fee','Payment Status','Registered At'];
+  const rows = regs.map(r => [r.id,r.name,r.email,r.phone,r.age,r.gender,r.category,r.tshirt,`"${r.address}"`,`"${r.emergency}"`,r.eventName,r.eventDate,r.fee,r.paymentStatus,r.registeredAt]);
+  const csv = [headers, ...rows].map(r => r.join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'NWA_Registrations.csv';
+  a.click();
+  showToast('Exported successfully!');
+}
+
+// ── MEMBERS ADMIN ──
+let memberPhotoData = '';
+
+function previewMemberPhoto(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    memberPhotoData = e.target.result;
+    document.getElementById('memPhotoPreview').innerHTML = `<div class="img-preview"><img src="${memberPhotoData}" alt="Preview"></div>`;
+  };
+  reader.readAsDataURL(file);
+}
+
+function saveMember() {
+  const name = document.getElementById('mem_name').value.trim();
+  const role = document.getElementById('mem_role').value.trim();
+  const bio = document.getElementById('mem_bio').value.trim();
+  const editId = document.getElementById('mem_editId').value;
+
+  if (!name || !role) { showToast('Name and role are required', 'error'); return; }
+
+  const members = DB.members;
+  if (editId) {
+    const idx = members.findIndex(m => m.id == editId);
+    if (idx !== -1) {
+      members[idx] = { ...members[idx], name, role, bio, ...(memberPhotoData ? { photo: memberPhotoData } : {}) };
+    }
+  } else {
+    members.push({ id: Date.now(), name, role, bio, photo: memberPhotoData });
+  }
+  DB.members = members;
+  clearMemberForm();
+  renderMembersTable();
+  showToast('Member saved!');
+}
+
+function clearMemberForm() {
+  ['mem_name','mem_role','mem_bio','mem_editId'].forEach(id => document.getElementById(id).value = '');
+  memberPhotoData = '';
+  document.getElementById('mem_photo').value = '';
+  document.getElementById('memPhotoPreview').innerHTML = '<div class="img-preview">👤</div>';
+  document.getElementById('memberFormTitle').textContent = 'Add New Member';
+}
+
+function editMember(id) {
+  const m = DB.members.find(m => m.id == id);
+  if (!m) return;
+  document.getElementById('mem_name').value = m.name;
+  document.getElementById('mem_role').value = m.role;
+  document.getElementById('mem_bio').value = m.bio || '';
+  document.getElementById('mem_editId').value = m.id;
+  memberPhotoData = m.photo || '';
+  if (m.photo) {
+    document.getElementById('memPhotoPreview').innerHTML = `<div class="img-preview"><img src="${m.photo}" alt="Preview"></div>`;
+  }
+  document.getElementById('memberFormTitle').textContent = 'Edit Member';
+  document.getElementById('tab-members').scrollIntoView({ behavior: 'smooth' });
+}
+
+function deleteMember(id) {
+  if (!confirm('Delete this member?')) return;
+  DB.members = DB.members.filter(m => m.id != id);
+  renderMembersTable();
+  showToast('Member deleted');
+}
+
+function renderMembersTable() {
+  const tbody = document.getElementById('membersTableBody');
+  const members = DB.members;
+  tbody.innerHTML = members.map(m => `
+    <tr>
+      <td><div class="img-preview">${m.photo ? `<img src="${m.photo}">` : m.name.charAt(0)}</div></td>
+      <td style="color:white;font-weight:600;">${m.name}</td>
+      <td style="color:var(--gold);">${m.role}</td>
+      <td style="color:var(--text-muted);font-size:12px;">${m.bio ? m.bio.substring(0,60)+'...' : '—'}</td>
+      <td class="action-btns">
+        <button class="action-btn action-btn-edit" onclick="editMember(${m.id})">✏️ Edit</button>
+        <button class="action-btn action-btn-delete" onclick="deleteMember(${m.id})">🗑</button>
+      </td>
+    </tr>
+  `).join('') || '<tr><td colspan="5" style="text-align:center;padding:20px;color:var(--text-muted);">No members added yet</td></tr>';
+}
+
+// ── ANNOUNCEMENTS ADMIN ──
+let annImgData = '';
+
+function previewAnnImg(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    annImgData = e.target.result;
+    document.getElementById('annImgPreview').innerHTML = `<div class="img-preview"><img src="${annImgData}"></div>`;
+  };
+  reader.readAsDataURL(file);
+}
+
+function saveAnnouncement() {
+  const title = document.getElementById('ann_title').value.trim();
+  const desc = document.getElementById('ann_desc').value.trim();
+  const editId = document.getElementById('ann_editId').value;
+
+  if (!title || !desc) { showToast('Title and description required', 'error'); return; }
+
+  const anns = DB.announcements;
+  if (editId) {
+    const idx = anns.findIndex(a => a.id == editId);
+    if (idx !== -1) {
+      anns[idx] = { ...anns[idx], title, description: desc, ...(annImgData ? { image: annImgData } : {}) };
+    }
+  } else {
+    anns.push({ id: Date.now(), title, description: desc, image: annImgData, date: new Date().toISOString().split('T')[0] });
+  }
+  DB.announcements = anns;
+  clearAnnForm();
+  renderAnnTable();
+  showToast('Announcement saved!');
+}
+
+function clearAnnForm() {
+  ['ann_title','ann_desc','ann_editId'].forEach(id => document.getElementById(id).value = '');
+  annImgData = '';
+  document.getElementById('ann_img').value = '';
+  document.getElementById('annImgPreview').innerHTML = '<div class="img-preview">📢</div>';
+  document.getElementById('annFormTitle').textContent = 'Add Announcement';
+}
+
+function editAnn(id) {
+  const a = DB.announcements.find(a => a.id == id);
+  if (!a) return;
+  document.getElementById('ann_title').value = a.title;
+  document.getElementById('ann_desc').value = a.description;
+  document.getElementById('ann_editId').value = a.id;
+  annImgData = a.image || '';
+  if (a.image) document.getElementById('annImgPreview').innerHTML = `<div class="img-preview"><img src="${a.image}"></div>`;
+  document.getElementById('annFormTitle').textContent = 'Edit Announcement';
+}
+
+function deleteAnn(id) {
+  if (!confirm('Delete this announcement?')) return;
+  DB.announcements = DB.announcements.filter(a => a.id != id);
+  renderAnnTable();
+  showToast('Announcement deleted');
+}
+
+function renderAnnTable() {
+  const tbody = document.getElementById('annTableBody');
+  const anns = [...DB.announcements].reverse();
+  tbody.innerHTML = anns.map(a => `
+    <tr>
+      <td><div class="img-preview">${a.image ? `<img src="${a.image}">` : '📢'}</div></td>
+      <td style="color:white;font-weight:600;">${a.title}</td>
+      <td style="color:var(--text-muted);font-size:12px;">${a.description.substring(0,80)}...</td>
+      <td>${formatDate(a.date)}</td>
+      <td class="action-btns">
+        <button class="action-btn action-btn-edit" onclick="editAnn(${a.id})">✏️</button>
+        <button class="action-btn action-btn-delete" onclick="deleteAnn(${a.id})">🗑</button>
+      </td>
+    </tr>
+  `).join('') || '<tr><td colspan="5" style="text-align:center;padding:20px;color:var(--text-muted);">No announcements yet</td></tr>';
+}
+
+// ── GALLERY ADMIN ──
+function uploadGalleryImages(input) {
+  const files = Array.from(input.files);
+  const caption = document.getElementById('gallery_caption').value.trim();
+  const gallery = DB.gallery;
+  let processed = 0;
+
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      gallery.push({ id: Date.now() + Math.random(), src: e.target.result, caption });
+      processed++;
+      if (processed === files.length) {
+        DB.gallery = gallery;
+        renderGalleryAdmin();
+        showToast(files.length + ' photo(s) uploaded!');
+        input.value = '';
+        document.getElementById('gallery_caption').value = '';
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function deleteGalleryItem(id) {
+  DB.gallery = DB.gallery.filter(g => g.id != id);
+  renderGalleryAdmin();
+  showToast('Photo deleted');
+}
+
+function renderGalleryAdmin() {
+  const grid = document.getElementById('galleryAdminGrid');
+  const empty = document.getElementById('galleryAdminEmpty');
+  const gallery = DB.gallery;
+  if (!gallery.length) { grid.innerHTML = ''; empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  grid.innerHTML = gallery.map(g => `
+    <div class="gallery-admin-item">
+      <img src="${g.src}" alt="${g.caption||''}">
+      <button class="gai-del" onclick="deleteGalleryItem(${g.id})">×</button>
+    </div>
+  `).join('');
+}
+
+// ── PAYMENT ADMIN ──
+let qrImgData = '';
+
+function previewQR(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    qrImgData = e.target.result;
+    document.getElementById('qrPreview').innerHTML = `<img src="${qrImgData}" style="max-width:120px;border-radius:8px;">`;
+  };
+  reader.readAsDataURL(file);
+}
+
+function savePaymentSettings() {
+  const upi = document.getElementById('pay_upi').value.trim();
+  const name = document.getElementById('pay_name').value.trim();
+  const instructions = document.getElementById('pay_instructions').value.trim();
+
+  if (!upi && !qrImgData) { showToast('Enter at least UPI ID or upload QR', 'error'); return; }
+
+  const ps = { upi, name, instructions, qr: qrImgData || DB.paymentSettings.qr };
+  DB.paymentSettings = ps;
+  showToast('Payment settings saved!');
+  renderPaymentAdmin();
+}
+
+function renderPaymentAdmin() {
+  const ps = DB.paymentSettings;
+  document.getElementById('pay_upi').value = ps.upi || '';
+  document.getElementById('pay_name').value = ps.name || '';
+  document.getElementById('pay_instructions').value = ps.instructions || '';
+  if (ps.qr) {
+    qrImgData = ps.qr;
+    document.getElementById('qrPreview').innerHTML = `<img src="${ps.qr}" style="max-width:120px;border-radius:8px;">`;
+  }
+
+  document.getElementById('currentPaySettings').innerHTML = ps.upi ? `
+    <div class="upi-detail">
+      <div class="upi-label">UPI ID</div>
+      <div class="upi-value">${ps.upi}</div>
+      <small>Account: ${ps.name}</small>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">${ps.instructions || ''}</p>
+  ` : '<p style="color:var(--text-muted);font-size:13px;">No payment settings configured yet.</p>';
+}
+
+// ═══════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════
+
+function formatDate(dateStr) {
+  if (!dateStr) return '—';
+  try {
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+  } catch { return dateStr; }
+}
+
+// ═══════════════════════════════════════════════
+// LOGO — apply saved logo to all spots on page
+// ═══════════════════════════════════════════════
+
+function applyLogo(src) {
+  if (!src) return;
+  const imgTag = `<img src="${src}" alt="Netaji Welfare Association Logo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+
+  // 1. Navbar
+  const navWrap = document.getElementById('navLogoWrap');
+  if (navWrap) navWrap.innerHTML = imgTag;
+
+  // 2. Hero section big circle
+  const heroWrap = document.getElementById('heroLogoImg');
+  if (heroWrap) {
+    heroWrap.innerHTML = '';
+    heroWrap.style.width = '100%';
+    heroWrap.style.height = '100%';
+    heroWrap.style.display = 'block';
+    heroWrap.style.borderRadius = '50%';
+    heroWrap.style.overflow = 'hidden';
+    heroWrap.innerHTML = `<img src="${src}" alt="Logo" style="width:100%;height:100%;object-fit:cover;">`;
+  }
+
+  // 3. About section ring
+  const aboutWrap = document.getElementById('aboutLogoWrap');
+  if (aboutWrap) aboutWrap.innerHTML = `<img src="${src}" alt="Logo" style="width:100%;height:100%;object-fit:cover;">`;
+
+  // 4. Footer logo
+  const footerWrap = document.getElementById('footerLogoWrap');
+  if (footerWrap) footerWrap.innerHTML = imgTag;
+
+  // 5. Admin panel logo preview
+  const adminLogoPreview = document.getElementById('adminLogoPreview');
+  if (adminLogoPreview) adminLogoPreview.innerHTML = `<img src="${src}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+
+  // 6. Admin panel nav preview
+  const adminLogoPreview2 = document.getElementById('adminLogoPreview2');
+  if (adminLogoPreview2) adminLogoPreview2.innerHTML = `<img src="${src}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+}
+
+function handleLogoUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { showToast('Image too large. Please use under 2MB.', 'error'); return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    DB.logo = e.target.result;
+    applyLogo(e.target.result);
+    showToast('✅ Logo updated across the entire website!');
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeLogo() {
+  if (!confirm('Remove the current logo and revert to default?')) return;
+  DB.logo = '';
+  // Restore default text placeholders
+  const navWrap = document.getElementById('navLogoWrap');
+  if (navWrap) navWrap.innerHTML = 'N';
+  const heroWrap = document.getElementById('heroLogoImg');
+  if (heroWrap) { heroWrap.innerHTML = 'N'; heroWrap.style.width = ''; heroWrap.style.height = ''; }
+  const aboutWrap = document.getElementById('aboutLogoWrap');
+  if (aboutWrap) aboutWrap.innerHTML = `<div style="font-family:var(--font-display);font-size:80px;color:var(--gold);font-weight:900;">N</div>`;
+  const footerWrap = document.getElementById('footerLogoWrap');
+  if (footerWrap) footerWrap.innerHTML = 'N';
+  const adminLogoPreview = document.getElementById('adminLogoPreview');
+  if (adminLogoPreview) adminLogoPreview.innerHTML = '<span style="font-size:32px;">🖼️</span>';
+  showToast('Logo removed');
+}
+
+function renderBrandingTab() {
+  const logo = DB.logo;
+  const preview = document.getElementById('adminLogoPreview');
+  const preview2 = document.getElementById('adminLogoPreview2');
+  if (logo) {
+    if (preview) preview.innerHTML = `<img src="${logo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+    if (preview2) preview2.innerHTML = `<img src="${logo}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+  }
+}
+
+// ── Registration page – prepopulate event info ──
+const origShowPage = showPage;
+window.showPage = function(name) {
+  if (name === 'registration') {
+    const m = DB.marathon;
+    if (!m || m.status !== 'open') {
+      showToast('No active marathon registration', 'error');
+         return;
+    }
+    const m2 = DB.marathon;
+    document.getElementById('regEventInfo').innerHTML = `
+      <strong style="color:var(--gold);">${m2.name}</strong> &nbsp;|&nbsp; 📅 ${formatDate(m2.date)} &nbsp;|&nbsp; 💰 ₹${m2.fee}`;
+  }
+  origShowPage(name);
+};
+
+// ── Init: apply saved logo on page load ──
+applyLogo(DB.logo);
+renderHomeGallery();
+</script>
+</body>
+</html>
